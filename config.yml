@@ -1,11 +1,28 @@
+genesis:
+  chain_id: "dhub-1"
+  app_state:
+    mint:
+      params:
+        mint_denom: "uhub"
+    staking:
+      params:
+        bond_denom: "uhub"
+    crisis:
+      constant_fee:
+        denom: "uhub"
+    gov:
+      deposit_params:
+        min_deposit:
+          - amount: "10000000"
+            denom: "uhub"
 accounts:
   - name: alice
-    coins: ["20000token", "200000000stake"]
+    coins: ["200000000uhub"]
   - name: bob
-    coins: ["10000token", "100000000stake"]
+    coins: ["100000000uhub"]
 validator:
   name: alice
-  staked: "100000000stake"
+  staked: "100000000uhub"
 client:
   openapi:
     path: "docs/static/openapi.yml"
@@ -13,4 +30,4 @@ client:
     path: "vue/src/store"
 faucet:
   name: bob
-  coins: ["5token", "100000stake"]
+  coins: ["100000uhub"]
