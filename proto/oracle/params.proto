@@ -1,0 +1,16 @@
+syntax = "proto3";
+package youngjoonlee.dhub.oracle;
+
+import "gogoproto/gogo.proto";
+
+option go_package = "github.com/youngjoon-lee/dhub/x/oracle/types";
+
+// Params defines the parameters for the module.
+message Params {
+  option (gogoproto.goproto_stringer) = false;
+  
+  uint64 max_oracles = 1 [(gogoproto.moretags) = "yaml:\"max_oracles\""];
+  string slash_fraction_downtime = 2 [(gogoproto.moretags) = "yaml:\"slash_fraction_downtime\""];
+  string slash_fraction_wrong_vote = 3 [(gogoproto.moretags) = "yaml:\"slash_fraction_wrong_vote\""];
+  string downtime_duration = 4 [(gogoproto.moretags) = "yaml:\"downtime_duration\""];
+}

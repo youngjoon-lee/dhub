@@ -30425,6 +30425,52 @@ paths:
                   additionalProperties: {}
       tags:
         - Query
+  /youngjoon-lee/dhub/oracle/params:
+    get:
+      summary: Parameters queries the parameters of the module.
+      operationId: YoungjoonleeDhubOracleParams
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties:
+              params:
+                description: params holds all the parameters of this module.
+                type: object
+                properties:
+                  maxOracles:
+                    type: string
+                    format: uint64
+                  slashFractionDowntime:
+                    type: string
+                  slashFractionWrongVote:
+                    type: string
+                  downtimeDuration:
+                    type: string
+            description: >-
+              QueryParamsResponse is response type for the Query/Params RPC
+              method.
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      tags:
+        - Query
 definitions:
   cosmos.auth.v1beta1.Params:
     type: object
@@ -51883,3 +51929,33 @@ definitions:
     title: >-
       SignatureCounts contains information about signature reporting for a
       number of blocks
+  youngjoonlee.dhub.oracle.Params:
+    type: object
+    properties:
+      maxOracles:
+        type: string
+        format: uint64
+      slashFractionDowntime:
+        type: string
+      slashFractionWrongVote:
+        type: string
+      downtimeDuration:
+        type: string
+    description: Params defines the parameters for the module.
+  youngjoonlee.dhub.oracle.QueryParamsResponse:
+    type: object
+    properties:
+      params:
+        description: params holds all the parameters of this module.
+        type: object
+        properties:
+          maxOracles:
+            type: string
+            format: uint64
+          slashFractionDowntime:
+            type: string
+          slashFractionWrongVote:
+            type: string
+          downtimeDuration:
+            type: string
+    description: QueryParamsResponse is response type for the Query/Params RPC method.
