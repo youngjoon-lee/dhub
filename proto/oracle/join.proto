@@ -1,0 +1,22 @@
+syntax = "proto3";
+package youngjoonlee.dhub.oracle;
+
+import "gogoproto/gogo.proto";
+
+option go_package = "github.com/youngjoon-lee/dhub/x/oracle/types";
+
+message Join {
+  uint64 id = 1 [(gogoproto.customname) = "ID"];
+  string operator_address = 2; 
+  bytes enclave_report = 3; 
+  JoinStatus status = 4; 
+}
+
+enum JoinStatus {
+  option (gogoproto.goproto_enum_prefix) = false;
+
+  JOIN_STATUS_PENDING = 0;
+  JOIN_STATUS_APPROVED = 1;
+  JOIN_STATUS_REJECTED = 2;
+}
+

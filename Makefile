@@ -141,16 +141,12 @@ distclean: clean
 
 containerProtoVer=v0.2
 containerProtoImage=tendermintdev/sdk-proto-gen:$(containerProtoVer)
-containerProtoGen=cosmos-sdk-proto-gen-$(containerProtoVer)
-containerProtoGenSwagger=cosmos-sdk-proto-gen-swagger-$(containerProtoVer)
-containerProtoFmt=cosmos-sdk-proto-fmt-$(containerProtoVer)
 
 proto-all: proto-format proto-lint proto-gen
 
 proto-gen:
 	@echo "Generating Protobuf files"
-	@if $(DOCKER) ps -a --format '{{.Names}}' | grep -Eq "^${containerProtoGen}$$"; then $(DOCKER) start -a $(containerProtoGen); else $(DOCKER) run --name $(containerProtoGen) -v   $(CURDIR):/workspace --workdir /workspace $(containerProtoImage) \
-        sh ./scripts/protocgen.sh; fi
+	$(DOCKER) run --rm -v $(CURDIR):/workspace --workdir /workspace $(containerProtoImage) sh ./scripts/protocgen.sh
 
 # This generates the SDK's custom wrapper for google.protobuf.Any. It should only be run manually when needed
 proto-gen-any:
@@ -159,13 +155,11 @@ proto-gen-any:
 
 proto-swagger-gen:
 	@echo "Generating Protobuf Swagger"
-	@if $(DOCKER) ps -a --format '{{.Names}}' | grep -Eq "^${containerProtoGenSwagger}$$"; then $(DOCKER) start -a $(containerProtoGenSwagger); else $(DOCKER) run --name $(contain  erProtoGenSwagger) -v $(CURDIR):/workspace --workdir /workspace $(containerProtoImage) \
-        sh ./scripts/protoc-swagger-gen.sh; fi
+	$(DOCKER) run --rm -v $(CURDIR):/workspace --workdir /workspace $(containerProtoImage) sh ./scripts/protoc-swagger-gen.sh; fi
 
 proto-format:
 	@echo "Formatting Protobuf files"
-	@if $(DOCKER) ps -a --format '{{.Names}}' | grep -Eq "^${containerProtoFmt}$$"; then $(DOCKER) start -a $(containerProtoFmt); else $(DOCKER) run --name $(containerProtoFmt) -v   $(CURDIR):/workspace --workdir /workspace $(containerProtoImage) \
-        find ./ -not -path "./third_party/*" -name *.proto -exec clang-format -i {}; fi
+	$(DOCKER) run --rm -v $(CURDIR):/workspace --workdir /workspace $(containerProtoImage) find ./ -not -path "./third_party/*" -name *.proto -exec clang-format -i {}
 
 proto-lint:
 	@$(DOCKER_BUF) check lint --error-format=json

@@ -6,7 +6,7 @@ package types
 import (
 	context "context"
 	fmt "fmt"
-	_ "github.com/cosmos/cosmos-sdk/types/query"
+	query "github.com/cosmos/cosmos-sdk/types/query"
 	_ "github.com/gogo/protobuf/gogoproto"
 	grpc1 "github.com/gogo/protobuf/grpc"
 	proto "github.com/gogo/protobuf/proto"
@@ -113,35 +113,234 @@ func (m *QueryParamsResponse) GetParams() Params {
 	return Params{}
 }
 
+type QueryGetJoinRequest struct {
+	ID uint64 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+}
+
+func (m *QueryGetJoinRequest) Reset()         { *m = QueryGetJoinRequest{} }
+func (m *QueryGetJoinRequest) String() string { return proto.CompactTextString(m) }
+func (*QueryGetJoinRequest) ProtoMessage()    {}
+func (*QueryGetJoinRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_562b782cb9ac197e, []int{2}
+}
+func (m *QueryGetJoinRequest) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryGetJoinRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryGetJoinRequest.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryGetJoinRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryGetJoinRequest.Merge(m, src)
+}
+func (m *QueryGetJoinRequest) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryGetJoinRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryGetJoinRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryGetJoinRequest proto.InternalMessageInfo
+
+func (m *QueryGetJoinRequest) GetID() uint64 {
+	if m != nil {
+		return m.ID
+	}
+	return 0
+}
+
+type QueryGetJoinResponse struct {
+	Join Join `protobuf:"bytes,1,opt,name=join,proto3" json:"join"`
+}
+
+func (m *QueryGetJoinResponse) Reset()         { *m = QueryGetJoinResponse{} }
+func (m *QueryGetJoinResponse) String() string { return proto.CompactTextString(m) }
+func (*QueryGetJoinResponse) ProtoMessage()    {}
+func (*QueryGetJoinResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_562b782cb9ac197e, []int{3}
+}
+func (m *QueryGetJoinResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryGetJoinResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryGetJoinResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryGetJoinResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryGetJoinResponse.Merge(m, src)
+}
+func (m *QueryGetJoinResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryGetJoinResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryGetJoinResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryGetJoinResponse proto.InternalMessageInfo
+
+func (m *QueryGetJoinResponse) GetJoin() Join {
+	if m != nil {
+		return m.Join
+	}
+	return Join{}
+}
+
+type QueryAllJoinRequest struct {
+	Pagination *query.PageRequest `protobuf:"bytes,1,opt,name=pagination,proto3" json:"pagination,omitempty"`
+}
+
+func (m *QueryAllJoinRequest) Reset()         { *m = QueryAllJoinRequest{} }
+func (m *QueryAllJoinRequest) String() string { return proto.CompactTextString(m) }
+func (*QueryAllJoinRequest) ProtoMessage()    {}
+func (*QueryAllJoinRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_562b782cb9ac197e, []int{4}
+}
+func (m *QueryAllJoinRequest) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryAllJoinRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryAllJoinRequest.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryAllJoinRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryAllJoinRequest.Merge(m, src)
+}
+func (m *QueryAllJoinRequest) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryAllJoinRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryAllJoinRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryAllJoinRequest proto.InternalMessageInfo
+
+func (m *QueryAllJoinRequest) GetPagination() *query.PageRequest {
+	if m != nil {
+		return m.Pagination
+	}
+	return nil
+}
+
+type QueryAllJoinResponse struct {
+	Join       []Join              `protobuf:"bytes,1,rep,name=join,proto3" json:"join"`
+	Pagination *query.PageResponse `protobuf:"bytes,2,opt,name=pagination,proto3" json:"pagination,omitempty"`
+}
+
+func (m *QueryAllJoinResponse) Reset()         { *m = QueryAllJoinResponse{} }
+func (m *QueryAllJoinResponse) String() string { return proto.CompactTextString(m) }
+func (*QueryAllJoinResponse) ProtoMessage()    {}
+func (*QueryAllJoinResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_562b782cb9ac197e, []int{5}
+}
+func (m *QueryAllJoinResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryAllJoinResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryAllJoinResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryAllJoinResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryAllJoinResponse.Merge(m, src)
+}
+func (m *QueryAllJoinResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryAllJoinResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryAllJoinResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryAllJoinResponse proto.InternalMessageInfo
+
+func (m *QueryAllJoinResponse) GetJoin() []Join {
+	if m != nil {
+		return m.Join
+	}
+	return nil
+}
+
+func (m *QueryAllJoinResponse) GetPagination() *query.PageResponse {
+	if m != nil {
+		return m.Pagination
+	}
+	return nil
+}
+
 func init() {
 	proto.RegisterType((*QueryParamsRequest)(nil), "youngjoonlee.dhub.oracle.QueryParamsRequest")
 	proto.RegisterType((*QueryParamsResponse)(nil), "youngjoonlee.dhub.oracle.QueryParamsResponse")
+	proto.RegisterType((*QueryGetJoinRequest)(nil), "youngjoonlee.dhub.oracle.QueryGetJoinRequest")
+	proto.RegisterType((*QueryGetJoinResponse)(nil), "youngjoonlee.dhub.oracle.QueryGetJoinResponse")
+	proto.RegisterType((*QueryAllJoinRequest)(nil), "youngjoonlee.dhub.oracle.QueryAllJoinRequest")
+	proto.RegisterType((*QueryAllJoinResponse)(nil), "youngjoonlee.dhub.oracle.QueryAllJoinResponse")
 }
 
 func init() { proto.RegisterFile("oracle/query.proto", fileDescriptor_562b782cb9ac197e) }
 
 var fileDescriptor_562b782cb9ac197e = []byte{
-	// 307 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x8c, 0x90, 0x31, 0x4f, 0xf3, 0x30,
-	0x10, 0x86, 0xe3, 0x4f, 0x1f, 0x1d, 0xcc, 0xe6, 0x76, 0xa8, 0x2a, 0x64, 0x4a, 0x59, 0x00, 0xb5,
-	0xb1, 0x5a, 0x76, 0x86, 0x0e, 0xcc, 0x50, 0x89, 0x85, 0xcd, 0x29, 0x27, 0x13, 0x94, 0xfa, 0xdc,
-	0xd8, 0x41, 0x74, 0xe5, 0x17, 0x54, 0x62, 0xe3, 0x17, 0x75, 0xac, 0xc4, 0xc2, 0x84, 0x50, 0xcb,
-	0x0f, 0x41, 0x89, 0x0d, 0x52, 0x05, 0x95, 0xd8, 0xa2, 0xcb, 0xf3, 0xbc, 0xf7, 0xfa, 0x28, 0xc3,
-	0x5c, 0x8e, 0x33, 0x10, 0xd3, 0x02, 0xf2, 0x59, 0x6c, 0x72, 0x74, 0xc8, 0x9a, 0x33, 0x2c, 0xb4,
-	0xba, 0x43, 0xd4, 0x19, 0x40, 0x7c, 0x73, 0x5b, 0x24, 0xb1, 0xa7, 0x5a, 0x0d, 0x85, 0x0a, 0x2b,
-	0x48, 0x94, 0x5f, 0x9e, 0x6f, 0xed, 0x29, 0x44, 0x95, 0x81, 0x90, 0x26, 0x15, 0x52, 0x6b, 0x74,
-	0xd2, 0xa5, 0xa8, 0x6d, 0xf8, 0x7b, 0x32, 0x46, 0x3b, 0x41, 0x2b, 0x12, 0x69, 0xc3, 0x1a, 0x71,
-	0xdf, 0x4f, 0xc0, 0xc9, 0xbe, 0x30, 0x52, 0xa5, 0xba, 0x82, 0x03, 0x5b, 0x0f, 0x6d, 0x8c, 0xcc,
-	0xe5, 0x24, 0x04, 0x74, 0x1a, 0x94, 0x5d, 0x96, 0xda, 0x45, 0x35, 0x1c, 0xc1, 0xb4, 0x00, 0xeb,
-	0x3a, 0x57, 0xb4, 0xbe, 0x31, 0xb5, 0x06, 0xb5, 0x05, 0x76, 0x46, 0x6b, 0x5e, 0x6e, 0x92, 0x36,
-	0x39, 0xda, 0x1d, 0xb4, 0xe3, 0x6d, 0x8f, 0x89, 0xbd, 0x39, 0xfc, 0xbf, 0x78, 0xdb, 0x8f, 0x46,
-	0xc1, 0x1a, 0x3c, 0x13, 0xba, 0x53, 0xe5, 0xb2, 0x39, 0xa1, 0x35, 0x8f, 0xb0, 0xee, 0xf6, 0x90,
-	0x9f, 0xcd, 0x5a, 0xbd, 0x3f, 0xd2, 0xbe, 0x71, 0xe7, 0xf8, 0xf1, 0xe5, 0xe3, 0xe9, 0xdf, 0x21,
-	0x3b, 0x10, 0xdf, 0x5a, 0x2f, 0x03, 0x10, 0xa5, 0x27, 0x36, 0xee, 0x31, 0x3c, 0x5f, 0xac, 0x38,
-	0x59, 0xae, 0x38, 0x79, 0x5f, 0x71, 0x32, 0x5f, 0xf3, 0x68, 0xb9, 0xe6, 0xd1, 0xeb, 0x9a, 0x47,
-	0xd7, 0x5d, 0x95, 0xba, 0x72, 0xcf, 0x18, 0x27, 0xbf, 0xc5, 0x3c, 0x7c, 0x05, 0xb9, 0x99, 0x01,
-	0x9b, 0xd4, 0xaa, 0xc3, 0x9e, 0x7e, 0x06, 0x00, 0x00, 0xff, 0xff, 0x59, 0x37, 0xdc, 0x39, 0xfd,
-	0x01, 0x00, 0x00,
+	// 495 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x94, 0x93, 0xcf, 0x6b, 0x13, 0x41,
+	0x14, 0xc7, 0x33, 0xdb, 0x18, 0x61, 0x3c, 0x39, 0x0d, 0x52, 0x82, 0x6c, 0xda, 0x55, 0x5a, 0x95,
+	0x64, 0x86, 0xd6, 0x8b, 0x27, 0xa1, 0x41, 0x5a, 0xf4, 0x14, 0x03, 0x5e, 0x04, 0x0f, 0x93, 0x64,
+	0x58, 0xa7, 0x6c, 0xf6, 0x6d, 0xb3, 0x13, 0x31, 0x88, 0x17, 0xff, 0x82, 0x4a, 0x4f, 0xfe, 0x3f,
+	0x1e, 0x7a, 0x2c, 0x78, 0xf1, 0x54, 0x24, 0xf1, 0x0f, 0x91, 0x99, 0x79, 0xad, 0x59, 0x6b, 0xdc,
+	0x78, 0x0b, 0x93, 0xef, 0x8f, 0xcf, 0xbc, 0x79, 0x4b, 0x19, 0x8c, 0xe5, 0x20, 0x51, 0xe2, 0x78,
+	0xa2, 0xc6, 0x53, 0x9e, 0x8d, 0xc1, 0x00, 0xdb, 0x98, 0xc2, 0x24, 0x8d, 0x8f, 0x00, 0xd2, 0x44,
+	0x29, 0x3e, 0x7c, 0x3b, 0xe9, 0x73, 0xaf, 0x6a, 0xd4, 0x63, 0x88, 0xc1, 0x89, 0x84, 0xfd, 0xe5,
+	0xf5, 0x8d, 0xbb, 0x31, 0x40, 0x9c, 0x28, 0x21, 0x33, 0x2d, 0x64, 0x9a, 0x82, 0x91, 0x46, 0x43,
+	0x9a, 0xe3, 0xbf, 0x8f, 0x06, 0x90, 0x8f, 0x20, 0x17, 0x7d, 0x99, 0x63, 0x8d, 0x78, 0xb7, 0xdb,
+	0x57, 0x46, 0xee, 0x8a, 0x4c, 0xc6, 0x3a, 0x75, 0x62, 0xd4, 0xae, 0x23, 0x4d, 0x26, 0xc7, 0x72,
+	0x74, 0x19, 0x70, 0x1b, 0x0f, 0x8f, 0x40, 0xa3, 0x2e, 0xaa, 0x53, 0xf6, 0xd2, 0x26, 0x75, 0x9d,
+	0xae, 0xa7, 0x8e, 0x27, 0x2a, 0x37, 0xd1, 0x2b, 0xba, 0x5e, 0x38, 0xcd, 0x33, 0x48, 0x73, 0xc5,
+	0x9e, 0xd2, 0x9a, 0xcf, 0xdb, 0x20, 0x9b, 0xe4, 0xc1, 0xad, 0xbd, 0x4d, 0xbe, 0xec, 0x7e, 0xdc,
+	0x3b, 0x3b, 0xd5, 0xb3, 0x8b, 0x66, 0xa5, 0x87, 0xae, 0xa8, 0x8d, 0xb1, 0x87, 0xca, 0xbc, 0x00,
+	0x9d, 0x62, 0x1b, 0xbb, 0x43, 0x03, 0x3d, 0x74, 0x91, 0xd5, 0x4e, 0x6d, 0x76, 0xd1, 0x0c, 0x9e,
+	0x3f, 0xeb, 0x05, 0x7a, 0x18, 0x75, 0x69, 0xbd, 0x28, 0x47, 0x8c, 0x27, 0xb4, 0x6a, 0x6f, 0x80,
+	0x10, 0xe1, 0x72, 0x08, 0xeb, 0x42, 0x04, 0xe7, 0x88, 0xde, 0x20, 0xc0, 0x7e, 0x92, 0x2c, 0x02,
+	0x1c, 0x50, 0xfa, 0x7b, 0x80, 0x18, 0xbb, 0xcd, 0xfd, 0xb4, 0xb9, 0x9d, 0x36, 0xf7, 0x8f, 0x8a,
+	0xd3, 0xe6, 0x5d, 0x19, 0x2b, 0xf4, 0xf6, 0x16, 0x9c, 0xd1, 0x17, 0x82, 0xc4, 0x57, 0xf9, 0xd7,
+	0x88, 0xd7, 0xfe, 0x8f, 0x98, 0x1d, 0x16, 0xd0, 0x02, 0x87, 0xb6, 0x53, 0x8a, 0xe6, 0x6b, 0x17,
+	0xd9, 0xf6, 0xbe, 0xae, 0xd1, 0x1b, 0x8e, 0x8d, 0x9d, 0x10, 0x5a, 0xf3, 0xcf, 0xc3, 0x5a, 0xcb,
+	0x49, 0xae, 0x6f, 0x45, 0xa3, 0xbd, 0xa2, 0xda, 0xb7, 0x47, 0x0f, 0x3f, 0x7d, 0xfb, 0x79, 0x1a,
+	0xdc, 0x63, 0x5b, 0xe2, 0xca, 0xd6, 0x4e, 0x94, 0x12, 0xd6, 0x27, 0x0a, 0xeb, 0xc9, 0x4e, 0x09,
+	0xad, 0xda, 0xab, 0xb3, 0xb2, 0x8a, 0xe2, 0xe6, 0x34, 0xf8, 0xaa, 0x72, 0x44, 0x6a, 0x39, 0xa4,
+	0x6d, 0x76, 0xff, 0x1f, 0x48, 0x76, 0xec, 0xe2, 0x83, 0x1e, 0x7e, 0x64, 0x9f, 0x09, 0xbd, 0x69,
+	0xed, 0xfb, 0x49, 0x52, 0x0a, 0x56, 0xdc, 0xa8, 0x52, 0xb0, 0x3f, 0x16, 0x24, 0xda, 0x71, 0x60,
+	0x5b, 0xac, 0x59, 0x02, 0xd6, 0x39, 0x38, 0x9b, 0x85, 0xe4, 0x7c, 0x16, 0x92, 0x1f, 0xb3, 0x90,
+	0x9c, 0xcc, 0xc3, 0xca, 0xf9, 0x3c, 0xac, 0x7c, 0x9f, 0x87, 0x95, 0xd7, 0xad, 0x58, 0x1b, 0x5b,
+	0x33, 0x80, 0xd1, 0xdf, 0x42, 0xde, 0x5f, 0xc6, 0x98, 0x69, 0xa6, 0xf2, 0x7e, 0xcd, 0x7d, 0xfe,
+	0x8f, 0x7f, 0x05, 0x00, 0x00, 0xff, 0xff, 0x4b, 0x3a, 0xcd, 0x02, 0xb6, 0x04, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -158,6 +357,10 @@ const _ = grpc.SupportPackageIsVersion4
 type QueryClient interface {
 	// Parameters queries the parameters of the module.
 	Params(ctx context.Context, in *QueryParamsRequest, opts ...grpc.CallOption) (*QueryParamsResponse, error)
+	// Queries a Join by id.
+	Join(ctx context.Context, in *QueryGetJoinRequest, opts ...grpc.CallOption) (*QueryGetJoinResponse, error)
+	// Queries a list of Join items.
+	JoinAll(ctx context.Context, in *QueryAllJoinRequest, opts ...grpc.CallOption) (*QueryAllJoinResponse, error)
 }
 
 type queryClient struct {
@@ -177,10 +380,32 @@ func (c *queryClient) Params(ctx context.Context, in *QueryParamsRequest, opts .
 	return out, nil
 }
 
+func (c *queryClient) Join(ctx context.Context, in *QueryGetJoinRequest, opts ...grpc.CallOption) (*QueryGetJoinResponse, error) {
+	out := new(QueryGetJoinResponse)
+	err := c.cc.Invoke(ctx, "/youngjoonlee.dhub.oracle.Query/Join", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *queryClient) JoinAll(ctx context.Context, in *QueryAllJoinRequest, opts ...grpc.CallOption) (*QueryAllJoinResponse, error) {
+	out := new(QueryAllJoinResponse)
+	err := c.cc.Invoke(ctx, "/youngjoonlee.dhub.oracle.Query/JoinAll", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // QueryServer is the server API for Query service.
 type QueryServer interface {
 	// Parameters queries the parameters of the module.
 	Params(context.Context, *QueryParamsRequest) (*QueryParamsResponse, error)
+	// Queries a Join by id.
+	Join(context.Context, *QueryGetJoinRequest) (*QueryGetJoinResponse, error)
+	// Queries a list of Join items.
+	JoinAll(context.Context, *QueryAllJoinRequest) (*QueryAllJoinResponse, error)
 }
 
 // UnimplementedQueryServer can be embedded to have forward compatible implementations.
@@ -189,6 +414,12 @@ type UnimplementedQueryServer struct {
 
 func (*UnimplementedQueryServer) Params(ctx context.Context, req *QueryParamsRequest) (*QueryParamsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Params not implemented")
+}
+func (*UnimplementedQueryServer) Join(ctx context.Context, req *QueryGetJoinRequest) (*QueryGetJoinResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Join not implemented")
+}
+func (*UnimplementedQueryServer) JoinAll(ctx context.Context, req *QueryAllJoinRequest) (*QueryAllJoinResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method JoinAll not implemented")
 }
 
 func RegisterQueryServer(s grpc1.Server, srv QueryServer) {
@@ -213,6 +444,42 @@ func _Query_Params_Handler(srv interface{}, ctx context.Context, dec func(interf
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Query_Join_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryGetJoinRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).Join(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/youngjoonlee.dhub.oracle.Query/Join",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).Join(ctx, req.(*QueryGetJoinRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Query_JoinAll_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryAllJoinRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).JoinAll(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/youngjoonlee.dhub.oracle.Query/JoinAll",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).JoinAll(ctx, req.(*QueryAllJoinRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _Query_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "youngjoonlee.dhub.oracle.Query",
 	HandlerType: (*QueryServer)(nil),
@@ -220,6 +487,14 @@ var _Query_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Params",
 			Handler:    _Query_Params_Handler,
+		},
+		{
+			MethodName: "Join",
+			Handler:    _Query_Join_Handler,
+		},
+		{
+			MethodName: "JoinAll",
+			Handler:    _Query_JoinAll_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
@@ -282,6 +557,151 @@ func (m *QueryParamsResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	return len(dAtA) - i, nil
 }
 
+func (m *QueryGetJoinRequest) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryGetJoinRequest) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryGetJoinRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.ID != 0 {
+		i = encodeVarintQuery(dAtA, i, uint64(m.ID))
+		i--
+		dAtA[i] = 0x8
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *QueryGetJoinResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryGetJoinResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryGetJoinResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	{
+		size, err := m.Join.MarshalToSizedBuffer(dAtA[:i])
+		if err != nil {
+			return 0, err
+		}
+		i -= size
+		i = encodeVarintQuery(dAtA, i, uint64(size))
+	}
+	i--
+	dAtA[i] = 0xa
+	return len(dAtA) - i, nil
+}
+
+func (m *QueryAllJoinRequest) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryAllJoinRequest) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryAllJoinRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.Pagination != nil {
+		{
+			size, err := m.Pagination.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintQuery(dAtA, i, uint64(size))
+		}
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *QueryAllJoinResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryAllJoinResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryAllJoinResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.Pagination != nil {
+		{
+			size, err := m.Pagination.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintQuery(dAtA, i, uint64(size))
+		}
+		i--
+		dAtA[i] = 0x12
+	}
+	if len(m.Join) > 0 {
+		for iNdEx := len(m.Join) - 1; iNdEx >= 0; iNdEx-- {
+			{
+				size, err := m.Join[iNdEx].MarshalToSizedBuffer(dAtA[:i])
+				if err != nil {
+					return 0, err
+				}
+				i -= size
+				i = encodeVarintQuery(dAtA, i, uint64(size))
+			}
+			i--
+			dAtA[i] = 0xa
+		}
+	}
+	return len(dAtA) - i, nil
+}
+
 func encodeVarintQuery(dAtA []byte, offset int, v uint64) int {
 	offset -= sovQuery(v)
 	base := offset
@@ -310,6 +730,61 @@ func (m *QueryParamsResponse) Size() (n int) {
 	_ = l
 	l = m.Params.Size()
 	n += 1 + l + sovQuery(uint64(l))
+	return n
+}
+
+func (m *QueryGetJoinRequest) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if m.ID != 0 {
+		n += 1 + sovQuery(uint64(m.ID))
+	}
+	return n
+}
+
+func (m *QueryGetJoinResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = m.Join.Size()
+	n += 1 + l + sovQuery(uint64(l))
+	return n
+}
+
+func (m *QueryAllJoinRequest) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if m.Pagination != nil {
+		l = m.Pagination.Size()
+		n += 1 + l + sovQuery(uint64(l))
+	}
+	return n
+}
+
+func (m *QueryAllJoinResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if len(m.Join) > 0 {
+		for _, e := range m.Join {
+			l = e.Size()
+			n += 1 + l + sovQuery(uint64(l))
+		}
+	}
+	if m.Pagination != nil {
+		l = m.Pagination.Size()
+		n += 1 + l + sovQuery(uint64(l))
+	}
 	return n
 }
 
@@ -428,6 +903,364 @@ func (m *QueryParamsResponse) Unmarshal(dAtA []byte) error {
 				return io.ErrUnexpectedEOF
 			}
 			if err := m.Params.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryGetJoinRequest) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryGetJoinRequest: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryGetJoinRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field ID", wireType)
+			}
+			m.ID = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.ID |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryGetJoinResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryGetJoinResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryGetJoinResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Join", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if err := m.Join.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryAllJoinRequest) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryAllJoinRequest: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryAllJoinRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Pagination", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if m.Pagination == nil {
+				m.Pagination = &query.PageRequest{}
+			}
+			if err := m.Pagination.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryAllJoinResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryAllJoinResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryAllJoinResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Join", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Join = append(m.Join, Join{})
+			if err := m.Join[len(m.Join)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Pagination", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if m.Pagination == nil {
+				m.Pagination = &query.PageResponse{}
+			}
+			if err := m.Pagination.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 				return err
 			}
 			iNdEx = postIndex

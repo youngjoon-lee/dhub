@@ -1,13 +1,24 @@
 syntax = "proto3";
 package youngjoonlee.dhub.oracle;
 
+import "gogoproto/gogo.proto";
 // this line is used by starport scaffolding # proto/tx/import
 
 option go_package = "github.com/youngjoon-lee/dhub/x/oracle/types";
 
 // Msg defines the Msg service.
 service Msg {
-    // this line is used by starport scaffolding # proto/tx/rpc
+      rpc Join(MsgJoin) returns (MsgJoinResponse);
+// this line is used by starport scaffolding # proto/tx/rpc
+}
+
+message MsgJoin {
+  string operatorAddress = 1;
+  bytes enclaveReport = 2;
+}
+
+message MsgJoinResponse {
+  uint64 id = 1 [(gogoproto.customname) = "ID"];
 }
 
 // this line is used by starport scaffolding # proto/tx/message
