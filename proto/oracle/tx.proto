@@ -13,8 +13,8 @@ service Msg {
 }
 
 message MsgJoin {
-  string operatorAddress = 1;
-  bytes enclaveReport = 2;
+  string operator_address = 1;
+  bytes enclave_report = 2;
 }
 
 message MsgJoinResponse {

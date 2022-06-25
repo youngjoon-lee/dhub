@@ -19,5 +19,12 @@ func (k msgServer) Join(goCtx context.Context, msg *types.MsgJoin) (*types.MsgJo
 	k.SetJoin(ctx, join)
 	k.SetNextJoinID(ctx, join.ID+1)
 
+	ctx.EventManager().EmitEvent(
+		sdk.NewEvent(
+			sdk.EventTypeMessage,
+			sdk.NewAttribute(sdk.AttributeKeyModule, types.AttributeValueModule),
+		),
+	)
+
 	return &types.MsgJoinResponse{ID: join.ID}, nil
 }

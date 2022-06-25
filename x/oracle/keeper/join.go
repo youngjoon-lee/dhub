@@ -2,6 +2,7 @@ package keeper
 
 import (
 	"encoding/binary"
+	"strconv"
 
 	"github.com/cosmos/cosmos-sdk/store/prefix"
 	sdk "github.com/cosmos/cosmos-sdk/types"
@@ -15,6 +16,14 @@ func (k Keeper) SetJoin(ctx sdk.Context, join types.Join) {
 	store.Set(types.JoinKey(
 		join.ID,
 	), b)
+
+	ctx.EventManager().EmitEvent(
+		sdk.NewEvent(
+			types.EventTypeJoin,
+			sdk.NewAttribute(types.AttributeKeyID, strconv.FormatUint(join.ID, 10)),
+			sdk.NewAttribute(types.AttributeKeyOperatorAddress, join.OperatorAddress),
+		),
+	)
 }
 
 // GetJoin returns a join from its index
