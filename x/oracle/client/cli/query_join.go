@@ -2,6 +2,7 @@ package cli
 
 import (
 	"context"
+	"strconv"
 
 	"github.com/cosmos/cosmos-sdk/client"
 	"github.com/cosmos/cosmos-sdk/client/flags"
@@ -44,7 +45,7 @@ func CmdListJoin() *cobra.Command {
 
 func CmdShowJoin() *cobra.Command {
 	cmd := &cobra.Command{
-		Use:   "show-join [index]",
+		Use:   "show-join [id]",
 		Short: "shows a join",
 		Args:  cobra.ExactArgs(1),
 		RunE: func(cmd *cobra.Command, args []string) (err error) {
@@ -52,10 +53,13 @@ func CmdShowJoin() *cobra.Command {
 
 			queryClient := types.NewQueryClient(clientCtx)
 
-			argIndex := args[0]
+			argID, err := strconv.ParseUint(args[0], 10, 64)
+			if err != nil {
+				return err
+			}
 
 			params := &types.QueryGetJoinRequest{
-				Index: argIndex,
+				Id: argID,
 			}
 
 			res, err := queryClient.Join(context.Background(), params)

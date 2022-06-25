@@ -1,6 +1,7 @@
 package cli
 
 import (
+	"io/ioutil"
 	"strconv"
 
 	"github.com/cosmos/cosmos-sdk/client"
@@ -14,11 +15,15 @@ var _ = strconv.Itoa(0)
 
 func CmdJoin() *cobra.Command {
 	cmd := &cobra.Command{
-		Use:   "join [enclave-report]",
+		Use:   "join [enclave-report-path]",
 		Short: "Broadcast message join",
 		Args:  cobra.ExactArgs(1),
 		RunE: func(cmd *cobra.Command, args []string) (err error) {
-			argEnclaveReport := args[0]
+			argEnclaveReportPath := args[0]
+			enclaveReport, err := ioutil.ReadFile(argEnclaveReportPath)
+			if err != nil {
+				return err
+			}
 
 			clientCtx, err := client.GetClientTxContext(cmd)
 			if err != nil {
@@ -27,7 +32,7 @@ func CmdJoin() *cobra.Command {
 
 			msg := types.NewMsgJoin(
 				clientCtx.GetFromAddress().String(),
-				argEnclaveReport,
+				enclaveReport,
 			)
 			if err := msg.ValidateBasic(); err != nil {
 				return err

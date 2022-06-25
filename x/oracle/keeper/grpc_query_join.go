@@ -20,7 +20,7 @@ func (k Keeper) JoinAll(c context.Context, req *types.QueryAllJoinRequest) (*typ
 	ctx := sdk.UnwrapSDKContext(c)
 
 	store := ctx.KVStore(k.storeKey)
-	joinStore := prefix.NewStore(store, types.KeyPrefix(types.JoinKeyPrefix))
+	joinStore := prefix.NewStore(store, types.JoinKeyPrefix)
 
 	pageRes, err := query.Paginate(joinStore, req.Pagination, func(key []byte, value []byte) error {
 		var join types.Join
@@ -47,7 +47,7 @@ func (k Keeper) Join(c context.Context, req *types.QueryGetJoinRequest) (*types.
 
 	val, found := k.GetJoin(
 		ctx,
-		req.ID,
+		req.Id,
 	)
 	if !found {
 		return nil, status.Error(codes.NotFound, "not found")

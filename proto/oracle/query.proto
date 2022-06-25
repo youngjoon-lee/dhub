@@ -39,7 +39,7 @@ message QueryParamsResponse {
 }
 
 message QueryGetJoinRequest {
-	uint64 id = 1 [(gogoproto.customname) = "ID"];
+	uint64 id = 1;
 }
 
 message QueryGetJoinResponse {

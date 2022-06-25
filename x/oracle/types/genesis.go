@@ -10,7 +10,8 @@ const DefaultIndex uint64 = 1
 // DefaultGenesis returns the default Capability genesis state
 func DefaultGenesis() *GenesisState {
 	return &GenesisState{
-		JoinList: []Join{},
+		NextJoinID: 1,
+		JoinList:   []Join{},
 		// this line is used by starport scaffolding # genesis/types/default
 		Params: DefaultParams(),
 	}
@@ -20,14 +21,14 @@ func DefaultGenesis() *GenesisState {
 // failure.
 func (gs GenesisState) Validate() error {
 	// Check for duplicated index in join
-	joinIDMap := make(map[string]struct{})
+	joinKeys := make(map[string]struct{})
 
-	for _, elem := range gs.JoinList {
-		index := string(JoinKey(elem.JoinId))
-		if _, ok := joinIDMap[index]; ok {
+	for _, join := range gs.JoinList {
+		keyStr := string(JoinKey(join.ID))
+		if _, ok := joinKeys[keyStr]; ok {
 			return fmt.Errorf("duplicated id for join")
 		}
-		joinIDMap[index] = struct{}{}
+		joinKeys[keyStr] = struct{}{}
 	}
 	// this line is used by starport scaffolding # genesis/types/validate
 

@@ -10,8 +10,14 @@ import (
 func (k msgServer) Join(goCtx context.Context, msg *types.MsgJoin) (*types.MsgJoinResponse, error) {
 	ctx := sdk.UnwrapSDKContext(goCtx)
 
-	// TODO: Handling the message
-	_ = ctx
+	join := types.Join{
+		ID:              k.GetNextJoinID(ctx),
+		OperatorAddress: msg.OperatorAddress,
+		EnclaveReport:   msg.EnclaveReport,
+		Status:          types.JOIN_STATUS_PENDING,
+	}
+	k.SetJoin(ctx, join)
+	k.SetNextJoinID(ctx, join.ID+1)
 
-	return &types.MsgJoinResponse{}, nil
+	return &types.MsgJoinResponse{ID: join.ID}, nil
 }

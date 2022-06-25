@@ -10,27 +10,23 @@ import (
 var _ paramtypes.ParamSet = (*Params)(nil)
 
 var (
-	KeyMaxOracles = []byte("MaxOracles")
-	// TODO: Determine the default value
-	DefaultMaxOracles uint64 = 0
+	KeyMaxOracles            = []byte("MaxOracles")
+	DefaultMaxOracles uint64 = 10
 )
 
 var (
-	KeySlashFractionDowntime = []byte("SlashFractionDowntime")
-	// TODO: Determine the default value
-	DefaultSlashFractionDowntime string = "slash_fraction_downtime"
+	KeySlashFractionDowntime            = []byte("SlashFractionDowntime")
+	DefaultSlashFractionDowntime string = "0.05"
 )
 
 var (
-	KeySlashFractionWrongVote = []byte("SlashFractionWrongVote")
-	// TODO: Determine the default value
-	DefaultSlashFractionWrongVote string = "slash_fraction_wrong_vote"
+	KeySlashFractionWrongVote            = []byte("SlashFractionWrongVote")
+	DefaultSlashFractionWrongVote string = "0.10"
 )
 
 var (
-	KeyDowntimeDuration = []byte("DowntimeDuration")
-	// TODO: Determine the default value
-	DefaultDowntimeDuration string = "downtime_duration"
+	KeyDowntimeDuration            = []byte("DowntimeDuration")
+	DefaultDowntimeDuration string = "30s"
 )
 
 // ParamKeyTable the param key table for launch module

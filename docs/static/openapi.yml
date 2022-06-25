@@ -30805,14 +30805,21 @@ paths:
                 items:
                   type: object
                   properties:
-                    index:
+                    id:
                       type: string
-                    operatorAddress:
+                      format: uint64
+                    operator_address:
                       type: string
-                    enclaveReport:
+                    enclave_report:
                       type: string
+                      format: byte
                     status:
                       type: string
+                      enum:
+                        - JOIN_STATUS_PENDING
+                        - JOIN_STATUS_APPROVED
+                        - JOIN_STATUS_REJECTED
+                      default: JOIN_STATUS_PENDING
               pagination:
                 type: object
                 properties:
@@ -30917,9 +30924,9 @@ paths:
           type: boolean
       tags:
         - Query
-  '/youngjoon-lee/dhub/oracle/join/{index}':
+  '/youngjoon-lee/dhub/oracle/join/{id}':
     get:
-      summary: Queries a Join by index.
+      summary: Queries a Join by id.
       operationId: YoungjoonleeDhubOracleJoin
       responses:
         '200':
@@ -30930,14 +30937,21 @@ paths:
               join:
                 type: object
                 properties:
-                  index:
+                  id:
                     type: string
-                  operatorAddress:
+                    format: uint64
+                  operator_address:
                     type: string
-                  enclaveReport:
+                  enclave_report:
                     type: string
+                    format: byte
                   status:
                     type: string
+                    enum:
+                      - JOIN_STATUS_PENDING
+                      - JOIN_STATUS_APPROVED
+                      - JOIN_STATUS_REJECTED
+                    default: JOIN_STATUS_PENDING
         default:
           description: An unexpected error response.
           schema:
@@ -30957,10 +30971,11 @@ paths:
                       type: string
                   additionalProperties: {}
       parameters:
-        - name: index
+        - name: id
           in: path
           required: true
           type: string
+          format: uint64
       tags:
         - Query
   /youngjoon-lee/dhub/oracle/params:
@@ -52573,16 +52588,34 @@ definitions:
   youngjoonlee.dhub.oracle.Join:
     type: object
     properties:
-      index:
+      id:
         type: string
-      operatorAddress:
+        format: uint64
+      operator_address:
         type: string
-      enclaveReport:
+      enclave_report:
         type: string
+        format: byte
       status:
         type: string
+        enum:
+          - JOIN_STATUS_PENDING
+          - JOIN_STATUS_APPROVED
+          - JOIN_STATUS_REJECTED
+        default: JOIN_STATUS_PENDING
+  youngjoonlee.dhub.oracle.JoinStatus:
+    type: string
+    enum:
+      - JOIN_STATUS_PENDING
+      - JOIN_STATUS_APPROVED
+      - JOIN_STATUS_REJECTED
+    default: JOIN_STATUS_PENDING
   youngjoonlee.dhub.oracle.MsgJoinResponse:
     type: object
+    properties:
+      id:
+        type: string
+        format: uint64
   youngjoonlee.dhub.oracle.Params:
     type: object
     properties:
@@ -52604,14 +52637,21 @@ definitions:
         items:
           type: object
           properties:
-            index:
+            id:
               type: string
-            operatorAddress:
+              format: uint64
+            operator_address:
               type: string
-            enclaveReport:
+            enclave_report:
               type: string
+              format: byte
             status:
               type: string
+              enum:
+                - JOIN_STATUS_PENDING
+                - JOIN_STATUS_APPROVED
+                - JOIN_STATUS_REJECTED
+              default: JOIN_STATUS_PENDING
       pagination:
         type: object
         properties:
@@ -52643,14 +52683,21 @@ definitions:
       join:
         type: object
         properties:
-          index:
+          id:
             type: string
-          operatorAddress:
+            format: uint64
+          operator_address:
             type: string
-          enclaveReport:
+          enclave_report:
             type: string
+            format: byte
           status:
             type: string
+            enum:
+              - JOIN_STATUS_PENDING
+              - JOIN_STATUS_APPROVED
+              - JOIN_STATUS_REJECTED
+            default: JOIN_STATUS_PENDING
   youngjoonlee.dhub.oracle.QueryParamsResponse:
     type: object
     properties:

@@ -4,9 +4,9 @@ import "encoding/binary"
 
 var _ binary.ByteOrder
 
-const (
-	// JoinKeyPrefix is the prefix to retrieve all Join
-	JoinKeyPrefix = "Join/value/"
+var (
+	NextJoinIDKey = []byte{0x00}
+	JoinKeyPrefix = []byte{0x01}
 )
 
 // JoinKey returns the store key to retrieve a Join from the index fields

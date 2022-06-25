@@ -9,7 +9,7 @@ const TypeMsgJoin = "join"
 
 var _ sdk.Msg = &MsgJoin{}
 
-func NewMsgJoin(operatorAddress string, enclaveReport string) *MsgJoin {
+func NewMsgJoin(operatorAddress string, enclaveReport []byte) *MsgJoin {
 	return &MsgJoin{
 		OperatorAddress: operatorAddress,
 		EnclaveReport:   enclaveReport,
@@ -42,5 +42,10 @@ func (msg *MsgJoin) ValidateBasic() error {
 	if err != nil {
 		return sdkerrors.Wrapf(sdkerrors.ErrInvalidAddress, "invalid operatorAddress address (%s)", err)
 	}
+
+	if len(msg.EnclaveReport) == 0 {
+		return sdkerrors.Wrapf(sdkerrors.ErrInvalidRequest, "enclaveReport is empty")
+	}
+
 	return nil
 }
