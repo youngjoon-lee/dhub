@@ -30813,6 +30813,24 @@ paths:
                     enclave_report:
                       type: string
                       format: byte
+                    enc_pub_key:
+                      type: object
+                      properties:
+                        key:
+                          type: string
+                          format: byte
+                      description: >-
+                        PubKey defines a secp256k1 public key
+
+                        Key is the compressed form of the pubkey. The first byte
+                        depends is a 0x02 byte
+
+                        if the y-coordinate is the lexicographically largest of
+                        the two associated with
+
+                        the x-coordinate. Otherwise the first byte is a 0x03.
+
+                        This prefix is followed with the x-coordinate.
                     status:
                       type: string
                       enum:
@@ -30945,6 +30963,24 @@ paths:
                   enclave_report:
                     type: string
                     format: byte
+                  enc_pub_key:
+                    type: object
+                    properties:
+                      key:
+                        type: string
+                        format: byte
+                    description: >-
+                      PubKey defines a secp256k1 public key
+
+                      Key is the compressed form of the pubkey. The first byte
+                      depends is a 0x02 byte
+
+                      if the y-coordinate is the lexicographically largest of
+                      the two associated with
+
+                      the x-coordinate. Otherwise the first byte is a 0x03.
+
+                      This prefix is followed with the x-coordinate.
                   status:
                     type: string
                     enum:
@@ -52585,6 +52621,24 @@ definitions:
     title: >-
       SignatureCounts contains information about signature reporting for a
       number of blocks
+  cosmos.crypto.secp256k1.PubKey:
+    type: object
+    properties:
+      key:
+        type: string
+        format: byte
+    description: >-
+      PubKey defines a secp256k1 public key
+
+      Key is the compressed form of the pubkey. The first byte depends is a 0x02
+      byte
+
+      if the y-coordinate is the lexicographically largest of the two associated
+      with
+
+      the x-coordinate. Otherwise the first byte is a 0x03.
+
+      This prefix is followed with the x-coordinate.
   youngjoonlee.dhub.oracle.Join:
     type: object
     properties:
@@ -52596,6 +52650,24 @@ definitions:
       enclave_report:
         type: string
         format: byte
+      enc_pub_key:
+        type: object
+        properties:
+          key:
+            type: string
+            format: byte
+        description: >-
+          PubKey defines a secp256k1 public key
+
+          Key is the compressed form of the pubkey. The first byte depends is a
+          0x02 byte
+
+          if the y-coordinate is the lexicographically largest of the two
+          associated with
+
+          the x-coordinate. Otherwise the first byte is a 0x03.
+
+          This prefix is followed with the x-coordinate.
       status:
         type: string
         enum:
@@ -52645,6 +52717,24 @@ definitions:
             enclave_report:
               type: string
               format: byte
+            enc_pub_key:
+              type: object
+              properties:
+                key:
+                  type: string
+                  format: byte
+              description: >-
+                PubKey defines a secp256k1 public key
+
+                Key is the compressed form of the pubkey. The first byte depends
+                is a 0x02 byte
+
+                if the y-coordinate is the lexicographically largest of the two
+                associated with
+
+                the x-coordinate. Otherwise the first byte is a 0x03.
+
+                This prefix is followed with the x-coordinate.
             status:
               type: string
               enum:
@@ -52691,6 +52781,24 @@ definitions:
           enclave_report:
             type: string
             format: byte
+          enc_pub_key:
+            type: object
+            properties:
+              key:
+                type: string
+                format: byte
+            description: >-
+              PubKey defines a secp256k1 public key
+
+              Key is the compressed form of the pubkey. The first byte depends
+              is a 0x02 byte
+
+              if the y-coordinate is the lexicographically largest of the two
+              associated with
+
+              the x-coordinate. Otherwise the first byte is a 0x03.
+
+              This prefix is followed with the x-coordinate.
           status:
             type: string
             enum:

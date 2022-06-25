@@ -1,6 +1,7 @@
 package keeper
 
 import (
+	"encoding/base64"
 	"encoding/binary"
 	"strconv"
 
@@ -22,6 +23,8 @@ func (k Keeper) SetJoin(ctx sdk.Context, join types.Join) {
 			types.EventTypeJoin,
 			sdk.NewAttribute(types.AttributeKeyID, strconv.FormatUint(join.ID, 10)),
 			sdk.NewAttribute(types.AttributeKeyOperatorAddress, join.OperatorAddress),
+			sdk.NewAttribute(types.AttributeKeyEnclaveReportBase64, base64.StdEncoding.EncodeToString(join.EnclaveReport)),
+			sdk.NewAttribute(types.AttributeKeyEncPubKeyBase64, base64.StdEncoding.EncodeToString(join.EncPubKey.Key)),
 		),
 	)
 }

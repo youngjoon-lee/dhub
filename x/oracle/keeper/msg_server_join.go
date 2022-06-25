@@ -14,6 +14,7 @@ func (k msgServer) Join(goCtx context.Context, msg *types.MsgJoin) (*types.MsgJo
 		ID:              k.GetNextJoinID(ctx),
 		OperatorAddress: msg.OperatorAddress,
 		EnclaveReport:   msg.EnclaveReport,
+		EncPubKey:       msg.EncPubKey,
 		Status:          types.JOIN_STATUS_PENDING,
 	}
 	k.SetJoin(ctx, join)

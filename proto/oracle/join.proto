@@ -2,6 +2,7 @@ syntax = "proto3";
 package youngjoonlee.dhub.oracle;
 
 import "gogoproto/gogo.proto";
+import "cosmos/crypto/secp256k1/keys.proto";
 
 option go_package = "github.com/youngjoon-lee/dhub/x/oracle/types";
 
@@ -9,7 +10,8 @@ message Join {
   uint64 id = 1 [(gogoproto.customname) = "ID"];
   string operator_address = 2; 
   bytes enclave_report = 3; 
-  JoinStatus status = 4; 
+  cosmos.crypto.secp256k1.PubKey enc_pub_key = 4;
+  JoinStatus status = 5; 
 }
 
 enum JoinStatus {

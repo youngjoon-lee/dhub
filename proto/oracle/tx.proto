@@ -2,6 +2,7 @@ syntax = "proto3";
 package youngjoonlee.dhub.oracle;
 
 import "gogoproto/gogo.proto";
+import "cosmos/crypto/secp256k1/keys.proto";
 // this line is used by starport scaffolding # proto/tx/import
 
 option go_package = "github.com/youngjoon-lee/dhub/x/oracle/types";
@@ -15,6 +16,7 @@ service Msg {
 message MsgJoin {
   string operator_address = 1;
   bytes enclave_report = 2;
+  cosmos.crypto.secp256k1.PubKey enc_pub_key = 3;
 }
 
 message MsgJoinResponse {
