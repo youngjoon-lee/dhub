@@ -1,0 +1,44 @@
+syntax = "proto3";
+package dhub.oracle;
+
+import "gogoproto/gogo.proto";
+import "cosmos/crypto/secp256k1/keys.proto";
+
+option go_package = "github.com/youngjoon-lee/dhub/x/oracle/types";
+
+message Join {
+  uint64 id = 1 [(gogoproto.customname) = "ID"];
+  string operator_address = 2; 
+  bytes enclave_report = 3; 
+  cosmos.crypto.secp256k1.PubKey enc_pub_key = 4;
+  JoinStatus status = 5; 
+  TallyResult tally_result = 6 [(gogoproto.nullable) = false];
+}
+
+enum JoinStatus {
+  option (gogoproto.goproto_enum_prefix) = false;
+
+  JOIN_STATUS_PENDING = 0;
+  JOIN_STATUS_APPROVED = 1;
+  JOIN_STATUS_REJECTED = 2;
+}
+
+enum VoteOption {
+  option (gogoproto.goproto_enum_prefix) = false;
+
+  VOTE_OPTION_YES = 0 [(gogoproto.enumvalue_customname) = "OptionYes"];
+  VOTE_OPTION_NO = 1 [(gogoproto.enumvalue_customname) = "OptionNo"];
+}
+
+message VoteForJoin {
+  uint64 join_id = 1 [(gogoproto.customname) = "JoinID"];
+  VoteOption option = 2;
+  string encrypted_oracle_priv_key_b64 = 3;
+  string voter = 4;
+}
+
+message TallyResult {
+  string yes = 1 [(gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Int", (gogoproto.nullable) = false];
+  string yesValue = 2;
+  string no = 3 [(gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Int", (gogoproto.nullable) = false];
+}

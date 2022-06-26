@@ -1,5 +1,5 @@
 syntax = "proto3";
-package youngjoonlee.dhub.oracle;
+package dhub.oracle;
 
 import "gogoproto/gogo.proto";
 

@@ -14,9 +14,7 @@ import (
 func (k Keeper) SetJoin(ctx sdk.Context, join types.Join) {
 	store := prefix.NewStore(ctx.KVStore(k.storeKey), types.JoinKeyPrefix)
 	b := k.cdc.MustMarshal(&join)
-	store.Set(types.JoinKey(
-		join.ID,
-	), b)
+	store.Set(types.JoinKey(join.ID), b)
 
 	ctx.EventManager().EmitEvent(
 		sdk.NewEvent(
@@ -30,34 +28,16 @@ func (k Keeper) SetJoin(ctx sdk.Context, join types.Join) {
 }
 
 // GetJoin returns a join from its index
-func (k Keeper) GetJoin(
-	ctx sdk.Context,
-	joinID uint64,
-
-) (val types.Join, found bool) {
+func (k Keeper) GetJoin(ctx sdk.Context, joinID uint64) (val types.Join, found bool) {
 	store := prefix.NewStore(ctx.KVStore(k.storeKey), types.JoinKeyPrefix)
 
-	b := store.Get(types.JoinKey(
-		joinID,
-	))
+	b := store.Get(types.JoinKey(joinID))
 	if b == nil {
 		return val, false
 	}
 
 	k.cdc.MustUnmarshal(b, &val)
 	return val, true
-}
-
-// RemoveJoin removes a join from the store
-func (k Keeper) RemoveJoin(
-	ctx sdk.Context,
-	joinID uint64,
-
-) {
-	store := prefix.NewStore(ctx.KVStore(k.storeKey), types.JoinKeyPrefix)
-	store.Delete(types.JoinKey(
-		joinID,
-	))
 }
 
 // GetAllJoin returns all join

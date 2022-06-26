@@ -16,8 +16,10 @@ func (k msgServer) Join(goCtx context.Context, msg *types.MsgJoin) (*types.MsgJo
 		EnclaveReport:   msg.EnclaveReport,
 		EncPubKey:       msg.EncPubKey,
 		Status:          types.JOIN_STATUS_PENDING,
+		TallyResult:     types.DefaultTallyResult(),
 	}
 	k.SetJoin(ctx, join)
+	k.InsertToPendingJoinQueue(ctx, join.ID)
 	k.SetNextJoinID(ctx, join.ID+1)
 
 	ctx.EventManager().EmitEvent(

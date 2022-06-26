@@ -6,6 +6,7 @@ import (
 	"github.com/tendermint/tendermint/libs/log"
 
 	"github.com/cosmos/cosmos-sdk/codec"
+	"github.com/cosmos/cosmos-sdk/store/prefix"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	paramtypes "github.com/cosmos/cosmos-sdk/x/params/types"
 	"github.com/youngjoon-lee/dhub/x/oracle/types"
@@ -48,4 +49,36 @@ func NewKeeper(
 
 func (k Keeper) Logger(ctx sdk.Context) log.Logger {
 	return ctx.Logger().With("module", fmt.Sprintf("x/%s", types.ModuleName))
+}
+
+func (k Keeper) InsertToPendingJoinQueue(ctx sdk.Context, joinID uint64) {
+	store := prefix.NewStore(ctx.KVStore(k.storeKey), types.PendingJoinQueueKeyPrefix)
+	store.Set(types.PendingJoinQueueKey(joinID), types.GetJoinIDBytes(joinID))
+}
+
+func (k Keeper) RemoveFromPendingJoinQueue(ctx sdk.Context, joinID uint64) {
+	store := prefix.NewStore(ctx.KVStore(k.storeKey), types.PendingJoinQueueKeyPrefix)
+	store.Delete(types.PendingJoinQueueKey(joinID))
+}
+
+func (k Keeper) IteratePendingJoinQueue(ctx sdk.Context, cb func(join types.Join) (stop bool)) {
+	iterator := k.PendingJoinQueueIterator(ctx)
+	defer iterator.Close()
+
+	for ; iterator.Valid(); iterator.Next() {
+		joinID := types.SplitPendingJoinQueueKey(iterator.Key())
+		join, ok := k.GetJoin(ctx, joinID)
+		if !ok {
+			panic(fmt.Sprintf("join %d not found", joinID))
+		}
+
+		if stop := cb(join); stop {
+			break
+		}
+	}
+}
+
+func (k Keeper) PendingJoinQueueIterator(ctx sdk.Context) sdk.Iterator {
+	store := prefix.NewStore(ctx.KVStore(k.storeKey), types.PendingJoinQueueKeyPrefix)
+	return store.Iterator(nil, nil)
 }

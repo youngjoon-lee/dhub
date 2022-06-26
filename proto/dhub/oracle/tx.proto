@@ -1,8 +1,9 @@
 syntax = "proto3";
-package youngjoonlee.dhub.oracle;
+package dhub.oracle;
 
 import "gogoproto/gogo.proto";
 import "cosmos/crypto/secp256k1/keys.proto";
+import "dhub/oracle/oracle.proto";
 // this line is used by starport scaffolding # proto/tx/import
 
 option go_package = "github.com/youngjoon-lee/dhub/x/oracle/types";
@@ -10,6 +11,7 @@ option go_package = "github.com/youngjoon-lee/dhub/x/oracle/types";
 // Msg defines the Msg service.
 service Msg {
       rpc Join(MsgJoin) returns (MsgJoinResponse);
+      rpc VoteForJoin(MsgVoteForJoin) returns (MsgVoteForJoinResponse);
 // this line is used by starport scaffolding # proto/tx/rpc
 }
 
@@ -22,5 +24,14 @@ message MsgJoin {
 message MsgJoinResponse {
   uint64 id = 1 [(gogoproto.customname) = "ID"];
 }
+
+message MsgVoteForJoin {
+  uint64 join_id = 1 [(gogoproto.customname) = "JoinID"];
+  VoteOption option = 2;
+  string encrypted_oracle_priv_key_b64 = 3;
+  string voter = 4;
+}
+
+message MsgVoteForJoinResponse {}
 
 // this line is used by starport scaffolding # proto/tx/message

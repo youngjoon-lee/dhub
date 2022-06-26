@@ -1,9 +1,9 @@
 syntax = "proto3";
-package youngjoonlee.dhub.oracle;
+package dhub.oracle;
 
 import "gogoproto/gogo.proto";
-import "oracle/params.proto";
-import "oracle/join.proto";
+import "dhub/oracle/params.proto";
+import "dhub/oracle/oracle.proto";
 // this line is used by starport scaffolding # genesis/proto/import
 
 option go_package = "github.com/youngjoon-lee/dhub/x/oracle/types";

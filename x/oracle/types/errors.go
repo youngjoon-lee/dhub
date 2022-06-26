@@ -8,5 +8,6 @@ import (
 
 // x/oracle module sentinel errors
 var (
-	ErrSample = sdkerrors.Register(ModuleName, 1100, "sample error")
+	ErrUnknownJoin = sdkerrors.Register(ModuleName, 2, "unknown join")
+	ErrClosedJoin  = sdkerrors.Register(ModuleName, 3, "join was already closed")
 )
