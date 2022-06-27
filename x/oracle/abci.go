@@ -34,6 +34,7 @@ func EndBlocker(ctx sdk.Context, keeper keeper.Keeper) {
 
 		oracle := types.Oracle{
 			OperatorAddress: join.OperatorAddress,
+			EnclaveReport:   join.EnclaveReport,
 			Stake:           sdk.OneInt(), //TODO: proof-of-stake
 		}
 		keeper.SetOracle(ctx, oracle)

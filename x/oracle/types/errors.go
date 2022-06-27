@@ -12,4 +12,5 @@ var (
 	ErrClosedJoin   = sdkerrors.Register(ModuleName, 3, "join was already closed")
 	ErrJoinExists   = sdkerrors.Register(ModuleName, 4, "join already exists")
 	ErrOracleExists = sdkerrors.Register(ModuleName, 5, "oracle already exists")
+	ErrOraclesExist = sdkerrors.Register(ModuleName, 6, "oracles already exist")
 )

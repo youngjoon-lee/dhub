@@ -49,3 +49,20 @@ func (k Keeper) GetOracleCount(ctx sdk.Context) uint32 {
 	}
 	return cnt
 }
+
+func (k Keeper) SetOraclePubKey(ctx sdk.Context, pubKey types.OraclePubKey) {
+	store := ctx.KVStore(k.storeKey)
+	b := k.cdc.MustMarshal(&pubKey)
+	store.Set(types.OraclePubKeyKey, b)
+}
+
+func (k Keeper) GetOraclePubKey(ctx sdk.Context) (pubKey types.OraclePubKey, found bool) {
+	store := ctx.KVStore(k.storeKey)
+	b := store.Get(types.OraclePubKeyKey)
+	if b == nil {
+		return pubKey, false
+	}
+
+	k.cdc.Unmarshal(b, &pubKey)
+	return pubKey, true
+}

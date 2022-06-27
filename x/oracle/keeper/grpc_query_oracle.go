@@ -52,3 +52,17 @@ func (k Keeper) Oracle(c context.Context, req *types.QueryGetOracleRequest) (*ty
 
 	return &types.QueryGetOracleResponse{Oracle: val}, nil
 }
+
+func (k Keeper) OraclePubKey(c context.Context, req *types.QueryGetOraclePubKeyRequest) (*types.QueryGetOraclePubKeyResponse, error) {
+	if req == nil {
+		return nil, status.Error(codes.InvalidArgument, "invalid request")
+	}
+	ctx := sdk.UnwrapSDKContext(c)
+
+	val, found := k.GetOraclePubKey(ctx)
+	if !found {
+		return nil, status.Error(codes.NotFound, "not found")
+	}
+
+	return &types.QueryGetOraclePubKeyResponse{PubKey: val}, nil
+}

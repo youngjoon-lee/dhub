@@ -9,6 +9,39 @@ import (
 	"github.com/youngjoon-lee/dhub/x/oracle/types"
 )
 
+func CmdListOracle() *cobra.Command {
+	cmd := &cobra.Command{
+		Use:   "list-oracles",
+		Short: "list all oracles",
+		RunE: func(cmd *cobra.Command, args []string) error {
+			clientCtx := client.GetClientContextFromCmd(cmd)
+
+			pageReq, err := client.ReadPageRequest(cmd.Flags())
+			if err != nil {
+				return err
+			}
+
+			queryClient := types.NewQueryClient(clientCtx)
+
+			params := &types.QueryAllOracleRequest{
+				Pagination: pageReq,
+			}
+
+			res, err := queryClient.OracleAll(context.Background(), params)
+			if err != nil {
+				return err
+			}
+
+			return clientCtx.PrintProto(res)
+		},
+	}
+
+	flags.AddPaginationFlagsToCmd(cmd, cmd.Use)
+	flags.AddQueryFlagsToCmd(cmd)
+
+	return cmd
+}
+
 func CmdShowOracle() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "show-oracle [operator-address]",
@@ -39,25 +72,16 @@ func CmdShowOracle() *cobra.Command {
 	return cmd
 }
 
-func CmdListOracle() *cobra.Command {
+func CmdShowOraclePubKey() *cobra.Command {
 	cmd := &cobra.Command{
-		Use:   "list-oracles",
-		Short: "list all oracles",
-		RunE: func(cmd *cobra.Command, args []string) error {
+		Use:   "show-oracle-pubkey",
+		Short: "shows an oracle pubkey",
+		Args:  cobra.ExactArgs(0),
+		RunE: func(cmd *cobra.Command, args []string) (err error) {
 			clientCtx := client.GetClientContextFromCmd(cmd)
 
-			pageReq, err := client.ReadPageRequest(cmd.Flags())
-			if err != nil {
-				return err
-			}
-
 			queryClient := types.NewQueryClient(clientCtx)
-
-			params := &types.QueryAllOracleRequest{
-				Pagination: pageReq,
-			}
-
-			res, err := queryClient.OracleAll(context.Background(), params)
+			res, err := queryClient.OraclePubKey(context.Background(), &types.QueryGetOraclePubKeyRequest{})
 			if err != nil {
 				return err
 			}
@@ -66,7 +90,6 @@ func CmdListOracle() *cobra.Command {
 		},
 	}
 
-	flags.AddPaginationFlagsToCmd(cmd, cmd.Use)
 	flags.AddQueryFlagsToCmd(cmd)
 
 	return cmd

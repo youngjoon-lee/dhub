@@ -29,6 +29,102 @@ var _ = math.Inf
 // proto package needs to be updated.
 const _ = proto.GoGoProtoPackageIsVersion3 // please upgrade the proto package
 
+type MsgInit struct {
+	OperatorAddress string            `protobuf:"bytes,1,opt,name=operator_address,json=operatorAddress,proto3" json:"operator_address,omitempty"`
+	EnclaveReport   []byte            `protobuf:"bytes,2,opt,name=enclave_report,json=enclaveReport,proto3" json:"enclave_report,omitempty"`
+	OraclePubKey    *secp256k1.PubKey `protobuf:"bytes,3,opt,name=oracle_pub_key,json=oraclePubKey,proto3" json:"oracle_pub_key,omitempty"`
+}
+
+func (m *MsgInit) Reset()         { *m = MsgInit{} }
+func (m *MsgInit) String() string { return proto.CompactTextString(m) }
+func (*MsgInit) ProtoMessage()    {}
+func (*MsgInit) Descriptor() ([]byte, []int) {
+	return fileDescriptor_1c8efcd838312df2, []int{0}
+}
+func (m *MsgInit) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *MsgInit) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_MsgInit.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *MsgInit) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_MsgInit.Merge(m, src)
+}
+func (m *MsgInit) XXX_Size() int {
+	return m.Size()
+}
+func (m *MsgInit) XXX_DiscardUnknown() {
+	xxx_messageInfo_MsgInit.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_MsgInit proto.InternalMessageInfo
+
+func (m *MsgInit) GetOperatorAddress() string {
+	if m != nil {
+		return m.OperatorAddress
+	}
+	return ""
+}
+
+func (m *MsgInit) GetEnclaveReport() []byte {
+	if m != nil {
+		return m.EnclaveReport
+	}
+	return nil
+}
+
+func (m *MsgInit) GetOraclePubKey() *secp256k1.PubKey {
+	if m != nil {
+		return m.OraclePubKey
+	}
+	return nil
+}
+
+type MsgInitResponse struct {
+}
+
+func (m *MsgInitResponse) Reset()         { *m = MsgInitResponse{} }
+func (m *MsgInitResponse) String() string { return proto.CompactTextString(m) }
+func (*MsgInitResponse) ProtoMessage()    {}
+func (*MsgInitResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_1c8efcd838312df2, []int{1}
+}
+func (m *MsgInitResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *MsgInitResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_MsgInitResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *MsgInitResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_MsgInitResponse.Merge(m, src)
+}
+func (m *MsgInitResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *MsgInitResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_MsgInitResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_MsgInitResponse proto.InternalMessageInfo
+
 type MsgJoin struct {
 	OperatorAddress string            `protobuf:"bytes,1,opt,name=operator_address,json=operatorAddress,proto3" json:"operator_address,omitempty"`
 	EnclaveReport   []byte            `protobuf:"bytes,2,opt,name=enclave_report,json=enclaveReport,proto3" json:"enclave_report,omitempty"`
@@ -39,7 +135,7 @@ func (m *MsgJoin) Reset()         { *m = MsgJoin{} }
 func (m *MsgJoin) String() string { return proto.CompactTextString(m) }
 func (*MsgJoin) ProtoMessage()    {}
 func (*MsgJoin) Descriptor() ([]byte, []int) {
-	return fileDescriptor_1c8efcd838312df2, []int{0}
+	return fileDescriptor_1c8efcd838312df2, []int{2}
 }
 func (m *MsgJoin) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -97,7 +193,7 @@ func (m *MsgJoinResponse) Reset()         { *m = MsgJoinResponse{} }
 func (m *MsgJoinResponse) String() string { return proto.CompactTextString(m) }
 func (*MsgJoinResponse) ProtoMessage()    {}
 func (*MsgJoinResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_1c8efcd838312df2, []int{1}
+	return fileDescriptor_1c8efcd838312df2, []int{3}
 }
 func (m *MsgJoinResponse) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -144,7 +240,7 @@ func (m *MsgVoteForJoin) Reset()         { *m = MsgVoteForJoin{} }
 func (m *MsgVoteForJoin) String() string { return proto.CompactTextString(m) }
 func (*MsgVoteForJoin) ProtoMessage()    {}
 func (*MsgVoteForJoin) Descriptor() ([]byte, []int) {
-	return fileDescriptor_1c8efcd838312df2, []int{2}
+	return fileDescriptor_1c8efcd838312df2, []int{4}
 }
 func (m *MsgVoteForJoin) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -208,7 +304,7 @@ func (m *MsgVoteForJoinResponse) Reset()         { *m = MsgVoteForJoinResponse{}
 func (m *MsgVoteForJoinResponse) String() string { return proto.CompactTextString(m) }
 func (*MsgVoteForJoinResponse) ProtoMessage()    {}
 func (*MsgVoteForJoinResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_1c8efcd838312df2, []int{3}
+	return fileDescriptor_1c8efcd838312df2, []int{5}
 }
 func (m *MsgVoteForJoinResponse) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -238,6 +334,8 @@ func (m *MsgVoteForJoinResponse) XXX_DiscardUnknown() {
 var xxx_messageInfo_MsgVoteForJoinResponse proto.InternalMessageInfo
 
 func init() {
+	proto.RegisterType((*MsgInit)(nil), "dhub.oracle.MsgInit")
+	proto.RegisterType((*MsgInitResponse)(nil), "dhub.oracle.MsgInitResponse")
 	proto.RegisterType((*MsgJoin)(nil), "dhub.oracle.MsgJoin")
 	proto.RegisterType((*MsgJoinResponse)(nil), "dhub.oracle.MsgJoinResponse")
 	proto.RegisterType((*MsgVoteForJoin)(nil), "dhub.oracle.MsgVoteForJoin")
@@ -247,38 +345,41 @@ func init() {
 func init() { proto.RegisterFile("dhub/oracle/tx.proto", fileDescriptor_1c8efcd838312df2) }
 
 var fileDescriptor_1c8efcd838312df2 = []byte{
-	// 485 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x7c, 0x92, 0xc1, 0x8b, 0xd3, 0x40,
-	0x14, 0xc6, 0x3b, 0xdd, 0xda, 0xa5, 0x53, 0xed, 0x4a, 0x28, 0x6b, 0xac, 0x9a, 0x96, 0x2e, 0x42,
-	0x17, 0x34, 0xc1, 0xba, 0xf6, 0xe0, 0x45, 0x2d, 0xcb, 0x42, 0x5d, 0x4a, 0x97, 0x1c, 0x3c, 0x78,
-	0x09, 0x4d, 0xf2, 0x88, 0xd9, 0x76, 0xe7, 0x0d, 0x33, 0x69, 0xd9, 0xfc, 0x17, 0xe2, 0xd9, 0xbf,
-	0xc5, 0xb3, 0xc7, 0x3d, 0x7a, 0x5a, 0x24, 0xfd, 0x47, 0x24, 0x33, 0x69, 0xe8, 0x8a, 0x78, 0xea,
-	0xf4, 0xfb, 0x7e, 0x79, 0x7c, 0xdf, 0xe3, 0xd1, 0x76, 0xf8, 0x65, 0xe5, 0x3b, 0x28, 0xe6, 0xc1,
-	0x12, 0x9c, 0xe4, 0xda, 0xe6, 0x02, 0x13, 0x34, 0x9a, 0xb9, 0x6a, 0x6b, 0xb5, 0xd3, 0x8e, 0x30,
-	0x42, 0xa5, 0x3b, 0xf9, 0x4b, 0x23, 0x9d, 0x7e, 0x80, 0xf2, 0x0a, 0xa5, 0x13, 0x88, 0x94, 0x27,
-	0xe8, 0x48, 0x08, 0xf8, 0xf0, 0xcd, 0x68, 0xf1, 0xca, 0x59, 0x40, 0x2a, 0x0b, 0xc6, 0xdc, 0x1d,
-	0xae, 0x7f, 0xb4, 0xd3, 0xff, 0x4e, 0xe8, 0xfe, 0x54, 0x46, 0x1f, 0x31, 0x66, 0xc6, 0x31, 0x7d,
-	0x88, 0x1c, 0xc4, 0x3c, 0x41, 0xe1, 0xcd, 0xc3, 0x50, 0x80, 0x94, 0x26, 0xe9, 0x91, 0x41, 0xc3,
-	0x3d, 0xd8, 0xea, 0x1f, 0xb4, 0x6c, 0x3c, 0xa7, 0x2d, 0x60, 0xc1, 0x72, 0xbe, 0x06, 0x4f, 0x00,
-	0x47, 0x91, 0x98, 0xd5, 0x1e, 0x19, 0xdc, 0x77, 0x1f, 0x14, 0xaa, 0xab, 0x44, 0xe3, 0x1d, 0x6d,
-	0x02, 0x0b, 0x3c, 0xbe, 0xf2, 0xbd, 0x05, 0xa4, 0xe6, 0x5e, 0x8f, 0x0c, 0x9a, 0xc3, 0xae, 0xad,
-	0x13, 0xdb, 0x3a, 0xb1, 0x5d, 0x26, 0xb6, 0x2f, 0x56, 0xfe, 0x39, 0xa4, 0x6e, 0x03, 0x58, 0xa0,
-	0x9f, 0xfd, 0x63, 0x7a, 0x50, 0xa4, 0x73, 0x41, 0x72, 0x64, 0x12, 0x8c, 0x43, 0x5a, 0x8d, 0x43,
-	0x95, 0xab, 0x36, 0xae, 0x67, 0xb7, 0xdd, 0xea, 0xe4, 0xd4, 0xad, 0xc6, 0x61, 0xff, 0x07, 0xa1,
-	0xad, 0xa9, 0x8c, 0x3e, 0x61, 0x02, 0x67, 0x28, 0x54, 0xa1, 0x23, 0xba, 0x7f, 0x89, 0x31, 0xf3,
-	0x4a, 0x9e, 0x66, 0xb7, 0xdd, 0x7a, 0x6e, 0x4d, 0x4e, 0xdd, 0x7a, 0x6e, 0x4d, 0x42, 0xc3, 0xa1,
-	0x75, 0xe4, 0x49, 0x8c, 0x4c, 0x55, 0x68, 0x0d, 0x1f, 0xd9, 0x3b, 0x3b, 0xb7, 0xf3, 0x71, 0x33,
-	0x65, 0xbb, 0x05, 0x66, 0xbc, 0xa7, 0xcf, 0x80, 0xa9, 0xec, 0x10, 0x7a, 0x1a, 0xf3, 0xb8, 0x88,
-	0xd7, 0x79, 0x45, 0xcf, 0x1f, 0x9d, 0xa8, 0x9a, 0x0d, 0xf7, 0x71, 0x09, 0xcd, 0x14, 0x73, 0x21,
-	0xe2, 0xf5, 0x39, 0xa4, 0xe3, 0xd1, 0x89, 0xd1, 0xa6, 0xf7, 0xd6, 0x98, 0x80, 0x30, 0x6b, 0x8a,
-	0xd4, 0x7f, 0xfa, 0x26, 0x3d, 0xbc, 0x9b, 0x7f, 0x5b, 0x79, 0xf8, 0x8d, 0xd0, 0xbd, 0xa9, 0x8c,
-	0x8c, 0xb7, 0xb4, 0xa6, 0x7a, 0xb5, 0xef, 0x44, 0x2c, 0x16, 0xd4, 0x79, 0xfa, 0x2f, 0xb5, 0x5c,
-	0xdb, 0x8c, 0x36, 0x77, 0x57, 0xf3, 0xe4, 0x6f, 0x78, 0xc7, 0xec, 0x1c, 0xfd, 0xc7, 0xdc, 0x0e,
-	0x1c, 0x9f, 0xfd, 0xcc, 0x2c, 0x72, 0x93, 0x59, 0xe4, 0x77, 0x66, 0x91, 0xaf, 0x1b, 0xab, 0x72,
-	0xb3, 0xb1, 0x2a, 0xbf, 0x36, 0x56, 0xe5, 0xf3, 0x8b, 0x28, 0x4e, 0xf2, 0xef, 0x03, 0xbc, 0x72,
-	0x52, 0x5c, 0xb1, 0xe8, 0x12, 0x91, 0xbd, 0x5c, 0x02, 0x38, 0xea, 0x0c, 0xaf, 0xcb, 0x2b, 0x4f,
-	0x39, 0x48, 0xbf, 0xae, 0x0e, 0xf1, 0xf5, 0x9f, 0x00, 0x00, 0x00, 0xff, 0xff, 0xbe, 0xf3, 0xc4,
-	0xde, 0x01, 0x03, 0x00, 0x00,
+	// 531 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xb4, 0x93, 0x41, 0x6f, 0x12, 0x41,
+	0x14, 0xc7, 0x3b, 0x14, 0x69, 0x18, 0x2a, 0xd5, 0x0d, 0xa9, 0x2b, 0xea, 0x42, 0xb6, 0x31, 0xa1,
+	0x89, 0xee, 0x46, 0xac, 0x1c, 0x7a, 0x51, 0x49, 0x6d, 0x82, 0x0d, 0xc1, 0xec, 0xc1, 0x83, 0x97,
+	0x0d, 0xec, 0xbe, 0xac, 0x5b, 0xe8, 0xbc, 0xcd, 0xcc, 0x40, 0xba, 0xdf, 0xc2, 0x0f, 0xe0, 0xc9,
+	0x0f, 0xe2, 0xd9, 0x93, 0xe9, 0xd1, 0x53, 0x63, 0xe0, 0x8b, 0x98, 0x9d, 0x59, 0x08, 0x58, 0x63,
+	0xe2, 0xc1, 0x13, 0xcc, 0xff, 0xff, 0x7f, 0xb3, 0xbf, 0xf7, 0x66, 0x86, 0xd6, 0xc2, 0x8f, 0xd3,
+	0x91, 0x8b, 0x7c, 0x18, 0x4c, 0xc0, 0x95, 0x97, 0x4e, 0xc2, 0x51, 0xa2, 0x51, 0xc9, 0x54, 0x47,
+	0xab, 0xf5, 0x5a, 0x84, 0x11, 0x2a, 0xdd, 0xcd, 0xfe, 0xe9, 0x48, 0xdd, 0x0e, 0x50, 0x5c, 0xa0,
+	0x70, 0x03, 0x9e, 0x26, 0x12, 0x5d, 0x01, 0x41, 0xd2, 0x7e, 0xd1, 0x19, 0x3f, 0x73, 0xc7, 0x90,
+	0x8a, 0x3c, 0x63, 0xae, 0x6f, 0xae, 0x7f, 0xb4, 0x63, 0x7f, 0x21, 0x74, 0xa7, 0x2f, 0xa2, 0x1e,
+	0x8b, 0xa5, 0x71, 0x48, 0xef, 0x60, 0x02, 0x7c, 0x28, 0x91, 0xfb, 0xc3, 0x30, 0xe4, 0x20, 0x84,
+	0x49, 0x9a, 0xa4, 0x55, 0xf6, 0xf6, 0x96, 0xfa, 0x6b, 0x2d, 0x1b, 0x8f, 0x69, 0x15, 0x58, 0x30,
+	0x19, 0xce, 0xc0, 0xe7, 0x90, 0x20, 0x97, 0x66, 0xa1, 0x49, 0x5a, 0xbb, 0xde, 0xed, 0x5c, 0xf5,
+	0x94, 0x68, 0xbc, 0xa1, 0x55, 0xfd, 0x35, 0x3f, 0x99, 0x8e, 0xfc, 0x31, 0xa4, 0xe6, 0x76, 0x93,
+	0xb4, 0x2a, 0xed, 0x86, 0xa3, 0xa1, 0x1d, 0x0d, 0xed, 0xac, 0xa0, 0x9d, 0x77, 0xd3, 0xd1, 0x19,
+	0xa4, 0xde, 0xae, 0x2e, 0xd3, 0x2b, 0xfb, 0x2e, 0xdd, 0xcb, 0x19, 0x3d, 0x10, 0x09, 0x32, 0x01,
+	0xf6, 0x67, 0xcd, 0xfd, 0x16, 0x63, 0xf6, 0x1f, 0xb8, 0x5f, 0xd2, 0x0a, 0xb0, 0xe0, 0x5f, 0xa1,
+	0xcb, 0xc0, 0x82, 0x9c, 0xf8, 0x50, 0x11, 0x67, 0x74, 0x4b, 0x62, 0x63, 0x9f, 0x16, 0xe2, 0x50,
+	0x71, 0x15, 0xbb, 0xa5, 0xf9, 0x75, 0xa3, 0xd0, 0x3b, 0xf1, 0x0a, 0x71, 0x68, 0x7f, 0x25, 0xb4,
+	0xda, 0x17, 0xd1, 0x7b, 0x94, 0x70, 0x8a, 0x5c, 0x35, 0x74, 0x40, 0x77, 0xce, 0x31, 0x66, 0xfe,
+	0x2a, 0x4f, 0xe7, 0xd7, 0x8d, 0x52, 0x66, 0xf5, 0x4e, 0xbc, 0x52, 0x66, 0xf5, 0x42, 0xc3, 0xa5,
+	0x25, 0x4c, 0x64, 0x8c, 0x4c, 0xb5, 0x50, 0x6d, 0xdf, 0x73, 0xd6, 0xee, 0x8a, 0x93, 0x6d, 0x37,
+	0x50, 0xb6, 0x97, 0xc7, 0x8c, 0x57, 0xf4, 0x11, 0x30, 0xc5, 0x0e, 0xa1, 0xbf, 0x3c, 0x16, 0x1e,
+	0xcf, 0xb2, 0x16, 0xfd, 0x51, 0xe7, 0x48, 0xb5, 0x59, 0xf6, 0xee, 0xaf, 0x42, 0x03, 0x7d, 0x06,
+	0x3c, 0x9e, 0x9d, 0x41, 0xda, 0xed, 0x1c, 0x19, 0x35, 0x7a, 0x6b, 0x86, 0x12, 0xb8, 0x59, 0x54,
+	0x49, 0xbd, 0xb0, 0x4d, 0xba, 0xbf, 0xc9, 0xbf, 0x6c, 0xb9, 0xfd, 0x9d, 0xd0, 0xed, 0xbe, 0x88,
+	0x8c, 0x63, 0x5a, 0x54, 0x17, 0xac, 0xb6, 0x81, 0x98, 0x1f, 0x69, 0xfd, 0xe1, 0x9f, 0xd4, 0xd5,
+	0xd8, 0x8e, 0x69, 0x51, 0xcd, 0xe4, 0x46, 0x6d, 0xa6, 0xde, 0xac, 0xdd, 0x18, 0xf9, 0x80, 0x56,
+	0xd6, 0xc7, 0xfa, 0xe0, 0xf7, 0xf0, 0x9a, 0x59, 0x3f, 0xf8, 0x8b, 0xb9, 0xdc, 0xb0, 0x7b, 0xfa,
+	0x6d, 0x6e, 0x91, 0xab, 0xb9, 0x45, 0x7e, 0xce, 0x2d, 0xf2, 0x69, 0x61, 0x6d, 0x5d, 0x2d, 0xac,
+	0xad, 0x1f, 0x0b, 0x6b, 0xeb, 0xc3, 0x93, 0x28, 0x96, 0x59, 0x7d, 0x80, 0x17, 0x6e, 0x8a, 0x53,
+	0x16, 0x9d, 0x23, 0xb2, 0xa7, 0x13, 0x00, 0x57, 0x3d, 0xbd, 0xcb, 0xd5, 0xcb, 0x4e, 0x13, 0x10,
+	0xa3, 0x92, 0x7a, 0x7c, 0xcf, 0x7f, 0x05, 0x00, 0x00, 0xff, 0xff, 0x36, 0x91, 0xae, 0xd4, 0xf5,
+	0x03, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -293,6 +394,7 @@ const _ = grpc.SupportPackageIsVersion4
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type MsgClient interface {
+	Init(ctx context.Context, in *MsgInit, opts ...grpc.CallOption) (*MsgInitResponse, error)
 	Join(ctx context.Context, in *MsgJoin, opts ...grpc.CallOption) (*MsgJoinResponse, error)
 	VoteForJoin(ctx context.Context, in *MsgVoteForJoin, opts ...grpc.CallOption) (*MsgVoteForJoinResponse, error)
 }
@@ -303,6 +405,15 @@ type msgClient struct {
 
 func NewMsgClient(cc grpc1.ClientConn) MsgClient {
 	return &msgClient{cc}
+}
+
+func (c *msgClient) Init(ctx context.Context, in *MsgInit, opts ...grpc.CallOption) (*MsgInitResponse, error) {
+	out := new(MsgInitResponse)
+	err := c.cc.Invoke(ctx, "/dhub.oracle.Msg/Init", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
 }
 
 func (c *msgClient) Join(ctx context.Context, in *MsgJoin, opts ...grpc.CallOption) (*MsgJoinResponse, error) {
@@ -325,6 +436,7 @@ func (c *msgClient) VoteForJoin(ctx context.Context, in *MsgVoteForJoin, opts ..
 
 // MsgServer is the server API for Msg service.
 type MsgServer interface {
+	Init(context.Context, *MsgInit) (*MsgInitResponse, error)
 	Join(context.Context, *MsgJoin) (*MsgJoinResponse, error)
 	VoteForJoin(context.Context, *MsgVoteForJoin) (*MsgVoteForJoinResponse, error)
 }
@@ -333,6 +445,9 @@ type MsgServer interface {
 type UnimplementedMsgServer struct {
 }
 
+func (*UnimplementedMsgServer) Init(ctx context.Context, req *MsgInit) (*MsgInitResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Init not implemented")
+}
 func (*UnimplementedMsgServer) Join(ctx context.Context, req *MsgJoin) (*MsgJoinResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Join not implemented")
 }
@@ -342,6 +457,24 @@ func (*UnimplementedMsgServer) VoteForJoin(ctx context.Context, req *MsgVoteForJ
 
 func RegisterMsgServer(s grpc1.Server, srv MsgServer) {
 	s.RegisterService(&_Msg_serviceDesc, srv)
+}
+
+func _Msg_Init_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MsgInit)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MsgServer).Init(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/dhub.oracle.Msg/Init",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MsgServer).Init(ctx, req.(*MsgInit))
+	}
+	return interceptor(ctx, in, info, handler)
 }
 
 func _Msg_Join_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -385,6 +518,10 @@ var _Msg_serviceDesc = grpc.ServiceDesc{
 	HandlerType: (*MsgServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
+			MethodName: "Init",
+			Handler:    _Msg_Init_Handler,
+		},
+		{
 			MethodName: "Join",
 			Handler:    _Msg_Join_Handler,
 		},
@@ -395,6 +532,78 @@ var _Msg_serviceDesc = grpc.ServiceDesc{
 	},
 	Streams:  []grpc.StreamDesc{},
 	Metadata: "dhub/oracle/tx.proto",
+}
+
+func (m *MsgInit) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *MsgInit) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *MsgInit) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.OraclePubKey != nil {
+		{
+			size, err := m.OraclePubKey.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintTx(dAtA, i, uint64(size))
+		}
+		i--
+		dAtA[i] = 0x1a
+	}
+	if len(m.EnclaveReport) > 0 {
+		i -= len(m.EnclaveReport)
+		copy(dAtA[i:], m.EnclaveReport)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.EnclaveReport)))
+		i--
+		dAtA[i] = 0x12
+	}
+	if len(m.OperatorAddress) > 0 {
+		i -= len(m.OperatorAddress)
+		copy(dAtA[i:], m.OperatorAddress)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.OperatorAddress)))
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *MsgInitResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *MsgInitResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *MsgInitResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	return len(dAtA) - i, nil
 }
 
 func (m *MsgJoin) Marshal() (dAtA []byte, err error) {
@@ -555,6 +764,36 @@ func encodeVarintTx(dAtA []byte, offset int, v uint64) int {
 	dAtA[offset] = uint8(v)
 	return base
 }
+func (m *MsgInit) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = len(m.OperatorAddress)
+	if l > 0 {
+		n += 1 + l + sovTx(uint64(l))
+	}
+	l = len(m.EnclaveReport)
+	if l > 0 {
+		n += 1 + l + sovTx(uint64(l))
+	}
+	if m.OraclePubKey != nil {
+		l = m.OraclePubKey.Size()
+		n += 1 + l + sovTx(uint64(l))
+	}
+	return n
+}
+
+func (m *MsgInitResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	return n
+}
+
 func (m *MsgJoin) Size() (n int) {
 	if m == nil {
 		return 0
@@ -625,6 +864,208 @@ func sovTx(x uint64) (n int) {
 }
 func sozTx(x uint64) (n int) {
 	return sovTx(uint64((x << 1) ^ uint64((int64(x) >> 63))))
+}
+func (m *MsgInit) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowTx
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: MsgInit: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: MsgInit: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field OperatorAddress", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.OperatorAddress = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field EnclaveReport", wireType)
+			}
+			var byteLen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				byteLen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if byteLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + byteLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.EnclaveReport = append(m.EnclaveReport[:0], dAtA[iNdEx:postIndex]...)
+			if m.EnclaveReport == nil {
+				m.EnclaveReport = []byte{}
+			}
+			iNdEx = postIndex
+		case 3:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field OraclePubKey", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if m.OraclePubKey == nil {
+				m.OraclePubKey = &secp256k1.PubKey{}
+			}
+			if err := m.OraclePubKey.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipTx(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthTx
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *MsgInitResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowTx
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: MsgInitResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: MsgInitResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		default:
+			iNdEx = preIndex
+			skippy, err := skipTx(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthTx
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
 }
 func (m *MsgJoin) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)

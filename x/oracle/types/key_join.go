@@ -10,6 +10,7 @@ var (
 	PendingJoinQueueKeyPrefix = []byte{0x02}
 	VoteForJoinKeyPrefix      = []byte{0x03}
 	OracleKeyPrefix           = []byte{0x04}
+	OraclePubKeyKey           = []byte{0x05}
 )
 
 // JoinKey returns the store key to retrieve a Join from the index fields
