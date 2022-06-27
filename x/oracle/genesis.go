@@ -9,6 +9,8 @@ import (
 // InitGenesis initializes the capability module's state from a provided genesis
 // state.
 func InitGenesis(ctx sdk.Context, k keeper.Keeper, genState types.GenesisState) {
+	k.SetOraclePubKey(ctx, genState.OraclePubKey)
+
 	// Set all the oracle
 	for _, elem := range genState.OracleList {
 		k.SetOracle(ctx, elem)
@@ -27,6 +29,7 @@ func InitGenesis(ctx sdk.Context, k keeper.Keeper, genState types.GenesisState) 
 func ExportGenesis(ctx sdk.Context, k keeper.Keeper) *types.GenesisState {
 	genesis := types.DefaultGenesis()
 	genesis.Params = k.GetParams(ctx)
+	genesis.OraclePubKey, _ = k.GetOraclePubKey(ctx)
 	genesis.OracleList = k.GetAllOracles(ctx)
 	genesis.NextJoinID = k.GetNextJoinID(ctx)
 	genesis.JoinList = k.GetAllJoin(ctx)
