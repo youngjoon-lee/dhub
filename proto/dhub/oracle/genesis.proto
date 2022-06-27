@@ -11,7 +11,9 @@ option go_package = "github.com/youngjoon-lee/dhub/x/oracle/types";
 // GenesisState defines the oracle module's genesis state.
 message GenesisState {
   Params params = 1 [(gogoproto.nullable) = false];
-  uint64 next_join_id = 2 [(gogoproto.customname) = "NextJoinID"];
-  repeated Join join_list = 3 [(gogoproto.nullable) = false];
+  OraclePubKey oracle_pub_key = 2 [(gogoproto.nullable) = false];
+  repeated Oracle oracle_list = 3 [(gogoproto.nullable) = false];
+  uint64 next_join_id = 4 [(gogoproto.customname) = "NextJoinID"];
+  repeated Join join_list = 5 [(gogoproto.nullable) = false];
   // this line is used by starport scaffolding # genesis/proto/state
 }

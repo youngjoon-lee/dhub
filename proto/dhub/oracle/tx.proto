@@ -10,9 +10,19 @@ option go_package = "github.com/youngjoon-lee/dhub/x/oracle/types";
 
 // Msg defines the Msg service.
 service Msg {
-      rpc Join(MsgJoin) returns (MsgJoinResponse);
-      rpc VoteForJoin(MsgVoteForJoin) returns (MsgVoteForJoinResponse);
+  rpc Init(MsgInit) returns (MsgInitResponse);
+  rpc Join(MsgJoin) returns (MsgJoinResponse);
+  rpc VoteForJoin(MsgVoteForJoin) returns (MsgVoteForJoinResponse);
 // this line is used by starport scaffolding # proto/tx/rpc
+}
+
+message MsgInit {
+  string operator_address = 1;
+  bytes enclave_report = 2;
+  cosmos.crypto.secp256k1.PubKey oracle_pub_key = 3;
+}
+
+message MsgInitResponse {
 }
 
 message MsgJoin {

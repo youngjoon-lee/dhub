@@ -42,3 +42,13 @@ message TallyResult {
   string yesValue = 2;
   string no = 3 [(gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Int", (gogoproto.nullable) = false];
 }
+
+message Oracle {
+  string operator_address = 1;
+  bytes enclave_report = 2; 
+  string stake = 3 [(gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Int", (gogoproto.nullable) = false];
+}
+
+message OraclePubKey {
+  cosmos.crypto.secp256k1.PubKey pub_key = 1;
+}
