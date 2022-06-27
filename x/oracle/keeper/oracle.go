@@ -7,13 +7,13 @@ import (
 )
 
 func (k Keeper) SetOracle(ctx sdk.Context, oracle types.Oracle) {
-	store := prefix.NewStore(ctx.KVStore(k.storeKey), types.JoinKeyPrefix)
+	store := prefix.NewStore(ctx.KVStore(k.storeKey), types.OracleKeyPrefix)
 	b := k.cdc.MustMarshal(&oracle)
 	store.Set(types.OracleKey(oracle.OperatorAddress), b)
 }
 
 func (k Keeper) GetOracle(ctx sdk.Context, operatorAddress string) (oracle types.Oracle, found bool) {
-	store := prefix.NewStore(ctx.KVStore(k.storeKey), types.JoinKeyPrefix)
+	store := prefix.NewStore(ctx.KVStore(k.storeKey), types.OracleKeyPrefix)
 
 	b := store.Get(types.OracleKey(operatorAddress))
 	if b == nil {
@@ -25,7 +25,7 @@ func (k Keeper) GetOracle(ctx sdk.Context, operatorAddress string) (oracle types
 }
 
 func (k Keeper) GetAllOracles(ctx sdk.Context) (list []types.Oracle) {
-	store := prefix.NewStore(ctx.KVStore(k.storeKey), types.JoinKeyPrefix)
+	store := prefix.NewStore(ctx.KVStore(k.storeKey), types.OracleKeyPrefix)
 	iterator := sdk.KVStorePrefixIterator(store, []byte{})
 	defer iterator.Close()
 
@@ -39,7 +39,7 @@ func (k Keeper) GetAllOracles(ctx sdk.Context) (list []types.Oracle) {
 }
 
 func (k Keeper) GetOracleCount(ctx sdk.Context) uint32 {
-	store := prefix.NewStore(ctx.KVStore(k.storeKey), types.JoinKeyPrefix)
+	store := prefix.NewStore(ctx.KVStore(k.storeKey), types.OracleKeyPrefix)
 	iterator := sdk.KVStorePrefixIterator(store, []byte{})
 	defer iterator.Close()
 
