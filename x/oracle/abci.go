@@ -32,6 +32,12 @@ func EndBlocker(ctx sdk.Context, keeper keeper.Keeper) {
 		join.TallyResult = tallyResult
 		keeper.SetJoin(ctx, join)
 
+		oracle := types.Oracle{
+			OperatorAddress: join.OperatorAddress,
+			Stake:           sdk.OneInt(), //TODO: proof-of-stake
+		}
+		keeper.SetOracle(ctx, oracle)
+
 		keeper.RemoveFromPendingJoinQueue(ctx, join.ID)
 
 		ctx.EventManager().EmitEvent(

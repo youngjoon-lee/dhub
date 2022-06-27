@@ -42,3 +42,8 @@ message TallyResult {
   string yesValue = 2;
   string no = 3 [(gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Int", (gogoproto.nullable) = false];
 }
+
+message Oracle {
+  string operator_address = 1;
+  string stake = 2 [(gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Int", (gogoproto.nullable) = false];
+}

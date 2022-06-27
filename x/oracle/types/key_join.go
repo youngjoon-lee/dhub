@@ -9,6 +9,7 @@ var (
 	JoinKeyPrefix             = []byte{0x01}
 	PendingJoinQueueKeyPrefix = []byte{0x02}
 	VoteForJoinKeyPrefix      = []byte{0x03}
+	OracleKeyPrefix           = []byte{0x04}
 )
 
 // JoinKey returns the store key to retrieve a Join from the index fields
@@ -42,4 +43,8 @@ func GetJoinIDFromBytes(bz []byte) uint64 {
 
 func SplitPendingJoinQueueKey(key []byte) uint64 {
 	return GetJoinIDFromBytes(key)
+}
+
+func OracleKey(operatorAddress string) []byte {
+	return []byte(operatorAddress)
 }
