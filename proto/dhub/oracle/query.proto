@@ -16,15 +16,26 @@ service Query {
   rpc Params(QueryParamsRequest) returns (QueryParamsResponse) {
     option (google.api.http).get = "/youngjoon-lee/dhub/oracle/params";
   }
-  // Queries a Join by id.
-	rpc Join(QueryGetJoinRequest) returns (QueryGetJoinResponse) {
-		option (google.api.http).get = "/youngjoon-lee/dhub/oracle/join/{id}";
-	}
 
-	// Queries a list of Join items.
-	rpc JoinAll(QueryAllJoinRequest) returns (QueryAllJoinResponse) {
-		option (google.api.http).get = "/youngjoon-lee/dhub/oracle/join";
-	}
+  // Queries a Join by id.
+  rpc Join(QueryGetJoinRequest) returns (QueryGetJoinResponse) {
+	option (google.api.http).get = "/youngjoon-lee/dhub/oracle/join/{id}";
+  }
+
+  // Queries a list of Join items.
+  rpc JoinAll(QueryAllJoinRequest) returns (QueryAllJoinResponse) {
+      option (google.api.http).get = "/youngjoon-lee/dhub/oracle/join";
+  }
+
+  // Queries an Oracle by operator_address.
+  rpc Oracle(QueryGetOracleRequest) returns (QueryGetOracleResponse) {
+	option (google.api.http).get = "/youngjoon-lee/dhub/oracle/oracle/{operator_address}";
+  }
+
+  // Queries a list of Oracle items.
+  rpc OracleAll(QueryAllOracleRequest) returns (QueryAllOracleResponse) {
+      option (google.api.http).get = "/youngjoon-lee/dhub/oracle/oracle";
+  }
 
 // this line is used by starport scaffolding # 2
 }
@@ -53,6 +64,23 @@ message QueryAllJoinRequest {
 message QueryAllJoinResponse {
 	repeated Join join = 1 [(gogoproto.nullable) = false];
 	cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
+message QueryGetOracleRequest {
+  string operator_address = 1;
+}
+
+message QueryGetOracleResponse {
+  Oracle oracle = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryAllOracleRequest {
+  cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllOracleResponse {
+  repeated Oracle oracle = 1 [(gogoproto.nullable) = false];
+  cosmos.base.query.v1beta1.PageResponse pagination = 2;
 }
 
 // this line is used by starport scaffolding # 3
